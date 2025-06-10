@@ -1,0 +1,12 @@
+{
+  "@@locale": "nb",
+  "appTitle": "10000 Kast",
+  "homeWelcome": "Velkommen til 10000 Kast!",
+  "settings": "Innstillinger",
+  "language": "Språk",
+  "languageHint": "Trykk for å endre språk",
+  "theme": "Tema",
+  "lightTheme": "Lyst",
+  "darkTheme": "Mørkt"
+}
+

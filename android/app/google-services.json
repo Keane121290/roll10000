@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "763730573961",
+    "project_id": "roll10000",
+    "storage_bucket": "roll10000.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763730573961:android:ff5ce1a5fa5aa04e136458",
+        "android_client_info": {
+          "package_name": "com.keane1212.roll10000"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN5rGCqVvmpPbJ7vbCZ5cR2z7Wg1xaoK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
