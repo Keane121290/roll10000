@@ -30,6 +30,7 @@ flutter:
 
   assets:
     - assets/logo.png
+    - assets/images/felt_texture.png
 
   # Lokaliseringsstøtte
   generate: true
