@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const routeName = '/home';
   const HomeScreen({super.key});
 
   @override

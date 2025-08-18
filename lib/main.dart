@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'l10n/app_localizations.dart';
-import 'routes/route_generator.dart';
-import 'theme/app_theme.dart';
-import 'state/app_state.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const Roll10000App());
+import 'l10n/app_localizations.dart';
+import 'routes/route_generator.dart';
+import 'state/app_state.dart';
+import 'theme/app_theme.dart';
+import 'screens/splash_screen.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final appState = AppState();
+  await appState.loadPreferences(); // 👈 Laster lagrede valg før appen starter
+
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => appState,
+      child: const Roll10000App(),
+    ),
+  );
 }
 
 class Roll10000App extends StatelessWidget {
@@ -15,32 +27,29 @@ class Roll10000App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => AppState(),
-      child: Consumer<AppState>(
-        builder: (context, appState, _) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: '10000 Roll',
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            themeMode: appState.themeMode,
-            localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [
-              Locale('en'),
-              Locale('nb'),
-            ],
-            locale: appState.locale,
-            initialRoute: '/',
-            onGenerateRoute: RouteGenerator.generateRoute,
-          );
-        },
-      ),
+    return Consumer<AppState>(
+      builder: (context, appState, child) {
+        return MaterialApp(
+          title: 'Roll10000',
+          theme: appState.isDarkMode
+              ? AppTheme.darkTheme
+              : AppTheme.lightTheme,
+          debugShowCheckedModeBanner: false,
+          initialRoute: SplashScreen.routeName, // 👈 Starter alltid på splash
+          onGenerateRoute: RouteGenerator.generateRoute,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('en'),
+            Locale('nb'),
+          ],
+          locale: appState.locale,
+        );
+      },
     );
   }
 }

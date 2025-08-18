@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class StatisticsScreen extends StatelessWidget {
+  static const routeName = '/statistics';
   const StatisticsScreen({super.key});
 
   @override

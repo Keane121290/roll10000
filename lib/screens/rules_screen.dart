@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 
 class RulesScreen extends StatelessWidget {
+  static const routeName = '/rules';
   const RulesScreen({super.key});
 
   @override

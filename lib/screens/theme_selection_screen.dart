@@ -1,50 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../l10n/app_localizations.dart';
 import '../state/app_state.dart';
 
 class ThemeSelectionScreen extends StatelessWidget {
+  static const routeName = '/theme';
+
   const ThemeSelectionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final appState = Provider.of<AppState>(context);
-    final currentTheme = appState.themeMode;
+    final appState = context.watch<AppState>();
+    final localizations = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.theme),
-        backgroundColor: theme.colorScheme.surface,
+        title: Text(localizations.theme),
       ),
-      backgroundColor: theme.colorScheme.surface,
       body: ListView(
         children: [
-          RadioListTile<ThemeMode>(
-            title: Text(AppLocalizations.of(context)!.lightTheme),
-            value: ThemeMode.light,
-            groupValue: currentTheme,
+          RadioListTile<bool>(
+            title: Text(localizations.lightTheme),
+            value: false,
+            groupValue: appState.isDarkMode,
             onChanged: (value) {
-              appState.setThemeMode(value!);
-              Navigator.pop(context);
+              if (value != null) {
+                context.read<AppState>().setThemeMode(value);
+              }
             },
           ),
-          RadioListTile<ThemeMode>(
-            title: Text(AppLocalizations.of(context)!.darkTheme),
-            value: ThemeMode.dark,
-            groupValue: currentTheme,
+          RadioListTile<bool>(
+            title: Text(localizations.darkTheme),
+            value: true,
+            groupValue: appState.isDarkMode,
             onChanged: (value) {
-              appState.setThemeMode(value!);
-              Navigator.pop(context);
-            },
-          ),
-          RadioListTile<ThemeMode>(
-            title: const Text('System'),
-            value: ThemeMode.system,
-            groupValue: currentTheme,
-            onChanged: (value) {
-              appState.setThemeMode(value!);
-              Navigator.pop(context);
+              if (value != null) {
+                context.read<AppState>().setThemeMode(value);
+              }
             },
           ),
         ],
