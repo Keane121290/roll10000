@@ -1,12 +1,48 @@
 {
   "@@locale": "nb",
-  "appTitle": "10000 Kast",
-  "homeWelcome": "Velkommen til 10000 Kast!",
+  "appTitle": "Roll10000",
+
   "settings": "Innstillinger",
   "language": "Språk",
   "languageHint": "Trykk for å endre språk",
   "theme": "Tema",
   "lightTheme": "Lyst",
-  "darkTheme": "Mørkt"
-}
+  "darkTheme": "Mørkt",
 
+  "rules": "Regler og veiledning",
+  "statistics": "Statistikk",
+
+  "rulesGoal": "Mål:\nVær den første til å nå nøyaktig 10 000 poeng.",
+  "rulesHowToPlay": "Slik spiller du:\n- Kast seks terninger.\n- Legg til side minst én terning som gir poeng.\n- Kast resten på nytt eller avslutt runden og ta poengene.\n- Hvis ingen terninger gir poeng, ender runden med 0 poeng.",
+  "rulesScoring": "Poengberegning:\n- 1 = 100 poeng\n- 5 = 50 poeng\n- Tre 1’ere = 1000 poeng\n- Tre like = 100 x tallet (f.eks. tre 4’ere = 400)\n- Straight (1-6) = 2000 poeng\n- Tre par = 1500 poeng\n- Fire/fem/seks like = dobbel/trippel/firedobbel verdi",
+  "rulesOther": "Andre regler:\n- Du må få minst 1000 poeng i en runde for å komme inn i spillet.\n- Etter det må du få minst 300 poeng for å ta vare på poeng.",
+
+  "homeTitle": "10000 Roll",
+  "homeNewGame": "Nytt spill",
+  "homeContinue": "Fortsett",
+  "homeRules": "Regler og veiledning",
+  "homeStatistics": "Statistikk",
+
+  "gameSetup": "Spilloppsett",
+  "chooseMode": "Velg modus:",
+  "twoPlayer": "2 spillere",
+  "vsComputer": "Spiller mot datamaskin",
+  "difficulty": "Vanskelighetsgrad:",
+  "difficultyEasy": "Lett",
+  "difficultyMedium": "Middels",
+  "difficultyHard": "Vanskelig",
+  "rulesSection": "Regler:",
+  "ruleConfirmCombinations": "Bekreft kombinasjoner",
+  "ruleMinBank300": "Min. bank 300 poeng",
+  "ruleMustOpen1000": "Må åpne med 1000 poeng",
+  "ruleNoBankBetween9000": "Ingen banking mellom 9000 og 10000",
+  "startGame": "Start spill",
+
+  "roll": "Kast",
+  "score": "Poeng",
+  "nextPlayer": "Neste spiller",
+  "endTurn": "Avslutt runde",
+  "noScoreMessage": "Ingen terninger gir poeng! Runden ender med 0 poeng.",
+  "bankedMessage": "Poeng lagret!",
+  "currentPlayer": "Nåværende spiller"
+}

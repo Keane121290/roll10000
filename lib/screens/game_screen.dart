@@ -1,4 +1,6 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
+import '../l10n/app_localizations.dart';
 
 class GameScreen extends StatefulWidget {
   static const routeName = '/game';
@@ -9,223 +11,88 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
-  bool vsCpu = true;
-  String difficulty = 'Easy';
-  Map<String, bool> rules = {
-    'confirmCombinations': true,
-    'minBank300': true,
-    'mustOpenWith1000': true,
-    'noBankBetween9000And10000': true,
-  };
-
+  final Random _random = Random();
+  List<int> dice = List.filled(6, 0); // start med "blanke" terninger (die_0.png)
+  int score = 0;
   int currentPlayer = 1;
-  int currentRoundPoints = 0;
-  List<int> diceValues = List.filled(6, 1);
-  List<bool> diceLocked = List.filled(6, false);
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final args = ModalRoute.of(context)?.settings.arguments;
-    if (args is Map) {
-      vsCpu = args['vsCpu'] ?? true;
-      difficulty = args['difficulty'] ?? 'Easy';
-      rules = Map<String, bool>.from(args['rules'] ?? {});
-    }
-  }
 
   void _rollDice() {
     setState(() {
-      for (int i = 0; i < diceValues.length; i++) {
-        if (!diceLocked[i]) {
-          diceValues[i] = 1 + (DateTime.now().millisecondsSinceEpoch + i) % 6;
-        }
-      }
+      // Lager 6 tilfeldige terningkast mellom 1 og 6
+      dice = List.generate(6, (_) => _random.nextInt(6) + 1);
+      // TODO: poengberegning implementeres senere
     });
   }
 
-  void _toggleDieLock(int index) {
+  void _endTurn() {
     setState(() {
-      diceLocked[index] = !diceLocked[index];
-    });
-  }
-
-  void _lockAllDice() {
-    setState(() {
-      diceLocked = List.filled(6, true);
-    });
-  }
-
-  void _bankPoints() {
-    setState(() {
-      currentRoundPoints = 0;
       currentPlayer = currentPlayer == 1 ? 2 : 1;
-      diceLocked = List.filled(6, false);
+      score = 0;
+      dice = List.filled(6, 0); // reset til blanke terninger
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final playerLabel = vsCpu
-        ? (currentPlayer == 1 ? 'You' : 'Computer')
-        : (currentPlayer == 1 ? 'Player 1' : 'Player 2');
+    final localizations = AppLocalizations.of(context)!;
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.surface,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            children: [
-              // Back button
-              Align(
-                alignment: Alignment.centerLeft,
-                child: IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                      context, '/home', (route) => false),
-                ),
-              ),
-
-              // Player scores
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _buildScoreBox('Player 1', currentPlayer == 1, theme),
-                  _buildScoreBox(
-                      vsCpu ? 'Computer' : 'Player 2', currentPlayer == 2, theme),
-                ],
-              ),
-
-              const SizedBox(height: 16),
-
-              // Round score
-              Text(
-                '(${currentRoundPoints.toString()})',
-                style: theme.textTheme.headlineMedium?.copyWith(
-                  color: Colors.greenAccent.shade400,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-
-              const SizedBox(height: 16),
-
-              // Lock all button
-              Center(
-                child: ElevatedButton(
-                  onPressed: _lockAllDice,
-                  child: const Text('Lock all'),
-                ),
-              ),
-
-              const SizedBox(height: 24),
-
-              // Dice rows (2 x 3)
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(3, (index) => _buildDie(index)),
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(3, (index) => _buildDie(index + 3)),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 24),
-
-              // Roll & Bank buttons
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    onPressed: _rollDice,
-                    child: const Text('Roll'),
-                  ),
-                  ElevatedButton(
-                    onPressed: _bankPoints,
-                    child: const Text('Bank'),
-                  ),
-                ],
-              ),
-
-              const Spacer(),
-
-              // Banner ad space
-              Container(
-                height: 56,
-                width: double.infinity,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.surfaceContainerHighest,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Text('Ad banner placeholder'),
-              ),
-
-              const SizedBox(height: 12),
-            ],
-          ),
-        ),
+      appBar: AppBar(
+        title: Text(localizations.score),
+        backgroundColor: theme.colorScheme.surface,
       ),
-    );
-  }
-
-  Widget _buildScoreBox(String label, bool isActive, ThemeData theme) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        margin: const EdgeInsets.symmetric(horizontal: 4),
-        decoration: BoxDecoration(
-          color: isActive
-              ? theme.colorScheme.primaryContainer
-              : theme.colorScheme.surfaceContainerHighest,
-          borderRadius: BorderRadius.circular(10),
-        ),
+      backgroundColor: theme.colorScheme.surface,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             Text(
-              label,
-              style: theme.textTheme.labelLarge,
+              "${localizations.currentPlayer}: $currentPlayer",
+              style: theme.textTheme.titleLarge,
             ),
-            const SizedBox(height: 4),
-            const Text(
-              '0', // Placeholder for total score
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            const SizedBox(height: 12),
+            Text(
+              "${localizations.score}: $score",
+              style: theme.textTheme.headlineMedium,
+            ),
+            const SizedBox(height: 24),
+
+            // 🎲 Viser 6 terninger fra assets
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisSpacing: 12,
+                crossAxisSpacing: 12,
+              ),
+              itemCount: dice.length,
+              itemBuilder: (context, index) {
+                final value = dice[index];
+                return Image.asset(
+                  'assets/dice/standard/die_$value.png',
+                  height: 64,
+                  width: 64,
+                );
+              },
+            ),
+
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: _rollDice,
+                  child: Text(localizations.roll),
+                ),
+                ElevatedButton(
+                  onPressed: _endTurn,
+                  child: Text(localizations.endTurn),
+                ),
+              ],
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDie(int index) {
-    final theme = Theme.of(context);
-    final isLocked = diceLocked[index];
-    return GestureDetector(
-      onTap: () => _toggleDieLock(index),
-      child: Container(
-        width: 70,
-        height: 70,
-        margin: const EdgeInsets.symmetric(horizontal: 12),
-        decoration: BoxDecoration(
-          color: isLocked
-              ? theme.colorScheme.primaryContainer
-              : theme.colorScheme.surfaceContainerHighest,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: isLocked ? theme.colorScheme.primary : Colors.transparent,
-            width: 2,
-          ),
-        ),
-        alignment: Alignment.center,
-        child: Text(
-          diceValues[index].toString(),
-          style: theme.textTheme.headlineSmall?.copyWith(fontSize: 28),
         ),
       ),
     );

@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
+import '../l10n/app_localizations.dart';
 
 class StatisticsScreen extends StatelessWidget {
   static const routeName = '/statistics';
+
   const StatisticsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final localizations = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Statistics'),
-        backgroundColor: theme.colorScheme.surface,
+        title: Text(localizations.statistics),
       ),
-      backgroundColor: theme.colorScheme.surface,
-      body: const Center(
-        child: Text(
-          'No statistics yet.',
-          style: TextStyle(fontSize: 16),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Center(
+          child: Text(
+            // TODO: Koble til ekte statistikk senere
+            "Your game statistics will be displayed here.",
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
         ),
       ),
     );

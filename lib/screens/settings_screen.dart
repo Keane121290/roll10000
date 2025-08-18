@@ -1,38 +1,41 @@
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
+import 'language_selection_screen.dart';
+import 'theme_selection_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   static const routeName = '/settings';
+
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final localizations = AppLocalizations.of(context)!;
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
         title: Text(localizations.settings),
-        backgroundColor: theme.colorScheme.surface,
       ),
       body: ListView(
         children: [
           ListTile(
             title: Text(localizations.language),
             subtitle: Text(localizations.languageHint),
-            leading: const Icon(Icons.language),
+            trailing: const Icon(Icons.chevron_right),
             onTap: () {
-              Navigator.pushNamed(context, '/language');
+              Navigator.pushNamed(context, LanguageSelectionScreen.routeName);
             },
           ),
+          const Divider(height: 1),
           ListTile(
             title: Text(localizations.theme),
-            leading: const Icon(Icons.brightness_6),
+            subtitle: Text(localizations.lightTheme + " / " + localizations.darkTheme),
+            trailing: const Icon(Icons.chevron_right),
             onTap: () {
-              Navigator.pushNamed(context, '/theme');
+              Navigator.pushNamed(context, ThemeSelectionScreen.routeName);
             },
           ),
+          const Divider(height: 1),
         ],
       ),
     );

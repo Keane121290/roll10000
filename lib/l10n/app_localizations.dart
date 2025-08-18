@@ -98,14 +98,8 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'10000 Roll'**
+  /// **'Roll10000'**
   String get appTitle;
-
-  /// No description provided for @homeWelcome.
-  ///
-  /// In en, this message translates to:
-  /// **'Welcome to 10000 Roll!'**
-  String get homeWelcome;
 
   /// No description provided for @settings.
   ///
@@ -142,6 +136,198 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dark'**
   String get darkTheme;
+
+  /// No description provided for @rules.
+  ///
+  /// In en, this message translates to:
+  /// **'Rules & Tutorial'**
+  String get rules;
+
+  /// No description provided for @statistics.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics'**
+  String get statistics;
+
+  /// No description provided for @rulesGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal:\nBe the first to score exactly 10,000 points.'**
+  String get rulesGoal;
+
+  /// No description provided for @rulesHowToPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'How to play:\n- Roll six dice.\n- Set aside at least one scoring die.\n- Re-roll the rest or end turn and bank the score.\n- If no scoring dice are rolled, turn ends with 0 points.'**
+  String get rulesHowToPlay;
+
+  /// No description provided for @rulesScoring.
+  ///
+  /// In en, this message translates to:
+  /// **'Scoring:\n- 1s = 100 pts\n- 5s = 50 pts\n- Three 1s = 1000 pts\n- Three of a kind = 100 x number (e.g. three 4s = 400)\n- Straight (1-6) = 2000 pts\n- Three pairs = 1500 pts\n- Four/five/six of a kind = double/triple/quadruple points'**
+  String get rulesScoring;
+
+  /// No description provided for @rulesOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other rules:\n- You must score at least 1000 in a turn to enter the game.\n- You must score at least 300 to bank points after that.'**
+  String get rulesOther;
+
+  /// No description provided for @homeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'10000 Roll'**
+  String get homeTitle;
+
+  /// No description provided for @homeNewGame.
+  ///
+  /// In en, this message translates to:
+  /// **'New Game'**
+  String get homeNewGame;
+
+  /// No description provided for @homeContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get homeContinue;
+
+  /// No description provided for @homeRules.
+  ///
+  /// In en, this message translates to:
+  /// **'Rules & Tutorial'**
+  String get homeRules;
+
+  /// No description provided for @homeStatistics.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics'**
+  String get homeStatistics;
+
+  /// No description provided for @gameSetup.
+  ///
+  /// In en, this message translates to:
+  /// **'Game Setup'**
+  String get gameSetup;
+
+  /// No description provided for @chooseMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Mode:'**
+  String get chooseMode;
+
+  /// No description provided for @twoPlayer.
+  ///
+  /// In en, this message translates to:
+  /// **'2 Player'**
+  String get twoPlayer;
+
+  /// No description provided for @vsComputer.
+  ///
+  /// In en, this message translates to:
+  /// **'Player vs Computer'**
+  String get vsComputer;
+
+  /// No description provided for @difficulty.
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty:'**
+  String get difficulty;
+
+  /// No description provided for @difficultyEasy.
+  ///
+  /// In en, this message translates to:
+  /// **'Easy'**
+  String get difficultyEasy;
+
+  /// No description provided for @difficultyMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get difficultyMedium;
+
+  /// No description provided for @difficultyHard.
+  ///
+  /// In en, this message translates to:
+  /// **'Hard'**
+  String get difficultyHard;
+
+  /// No description provided for @rulesSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Rules:'**
+  String get rulesSection;
+
+  /// No description provided for @ruleConfirmCombinations.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm combinations'**
+  String get ruleConfirmCombinations;
+
+  /// No description provided for @ruleMinBank300.
+  ///
+  /// In en, this message translates to:
+  /// **'Min. bank 300 points'**
+  String get ruleMinBank300;
+
+  /// No description provided for @ruleMustOpen1000.
+  ///
+  /// In en, this message translates to:
+  /// **'Must open with 1000 points'**
+  String get ruleMustOpen1000;
+
+  /// No description provided for @ruleNoBankBetween9000.
+  ///
+  /// In en, this message translates to:
+  /// **'No banking between 9000 and 10000'**
+  String get ruleNoBankBetween9000;
+
+  /// No description provided for @startGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Game'**
+  String get startGame;
+
+  /// No description provided for @roll.
+  ///
+  /// In en, this message translates to:
+  /// **'Roll'**
+  String get roll;
+
+  /// No description provided for @score.
+  ///
+  /// In en, this message translates to:
+  /// **'Score'**
+  String get score;
+
+  /// No description provided for @nextPlayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Player'**
+  String get nextPlayer;
+
+  /// No description provided for @endTurn.
+  ///
+  /// In en, this message translates to:
+  /// **'End Turn'**
+  String get endTurn;
+
+  /// No description provided for @noScoreMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'No scoring dice! Your turn ends with 0 points.'**
+  String get noScoreMessage;
+
+  /// No description provided for @bankedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Points banked!'**
+  String get bankedMessage;
+
+  /// No description provided for @currentPlayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Player'**
+  String get currentPlayer;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

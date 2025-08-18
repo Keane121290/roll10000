@@ -31,6 +31,8 @@ flutter:
   assets:
     - assets/logo.png
     - assets/images/felt_texture.png
+    - assets/dice/standard/
+    - assets/dice/marked/
 
   # Lokaliseringsstøtte
   generate: true

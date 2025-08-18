@@ -19,29 +19,31 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                '10000 Roll',
-                style: theme.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                localizations.homeTitle,
+                style: theme.textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () => Navigator.pushNamed(context, '/game-setup'),
-                child: const Text('New Game'),
+                child: Text(localizations.homeNewGame),
               ),
               const SizedBox(height: 12),
               ElevatedButton(
                 onPressed: () {},
-                child: const Text('Continue'),
+                child: Text(localizations.homeContinue),
               ),
               const SizedBox(height: 12),
               ElevatedButton(
                 onPressed: () => Navigator.pushNamed(context, '/rules'),
-                child: const Text('Rules & Tutorial'),
+                child: Text(localizations.homeRules),
               ),
               const SizedBox(height: 12),
               ElevatedButton(
                 onPressed: () => Navigator.pushNamed(context, '/statistics'),
-                child: const Text('Statistics'),
+                child: Text(localizations.homeStatistics),
               ),
               const Spacer(),
               Align(
@@ -50,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                   icon: const Icon(Icons.settings),
                   onPressed: () => Navigator.pushNamed(context, '/settings'),
                 ),
-              )
+              ),
             ],
           ),
         ),
