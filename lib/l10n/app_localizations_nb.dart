@@ -124,4 +124,50 @@ class AppLocalizationsNb extends AppLocalizations {
 
   @override
   String get currentPlayer => 'Nåværende spiller';
+
+  @override
+  String get turnScore => 'Rundepoeng';
+
+  @override
+  String get lockedScore => 'Låste poeng';
+
+  @override
+  String get player => 'Spiller';
+
+  @override
+  String get bank => 'Bank';
+
+  @override
+  String get pass => 'Stå over';
+
+  @override
+  String get helperLockValidCombo => 'Lås en gyldig poengkombinasjon (1/5, tre like, straight eller tre par) for å kaste på nytt.';
+
+  @override
+  String get helperMustOpen1000 => 'Du må åpne med minst 1000 poeng.';
+
+  @override
+  String get helperMinBank300 => 'Du må banke minst 300 poeng.';
+
+  @override
+  String get helperNoBankBetween => 'Du kan ikke banke når totalsummen havner mellom 9000 og 10000.';
+
+  @override
+  String get winnerTitle => 'Vinner';
+
+  @override
+  String winnerCongrats(int player) {
+    return 'Spiller $player vinner!';
+  }
+
+  @override
+  String winnerScoreLine(int score) {
+    return 'Sluttsum: $score';
+  }
+
+  @override
+  String get playAgain => 'Spill igjen';
+
+  @override
+  String get backToHome => 'Til hovedmeny';
 }

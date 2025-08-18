@@ -9,6 +9,8 @@ import '../screens/rules_screen.dart';
 import '../screens/settings_screen.dart';
 import '../screens/statistics_screen.dart';
 import '../screens/theme_selection_screen.dart';
+import '../screens/winner_screen.dart';
+
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -32,6 +34,14 @@ class RouteGenerator {
             builder: (_) => const LanguageSelectionScreen());
       case ThemeSelectionScreen.routeName:
         return MaterialPageRoute(builder: (_) => const ThemeSelectionScreen());
+      case WinnerScreen.routeName:
+        final args = settings.arguments as Map?;
+        return MaterialPageRoute(
+          builder: (_) => WinnerScreen(
+            winnerPlayerIndex: args?['winnerPlayerIndex'] ?? 0,
+            winnerScore: args?['winnerScore'] ?? 10000,
+          ),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(

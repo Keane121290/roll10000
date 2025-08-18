@@ -44,5 +44,32 @@
   "endTurn": "Avslutt runde",
   "noScoreMessage": "Ingen terninger gir poeng! Runden ender med 0 poeng.",
   "bankedMessage": "Poeng lagret!",
-  "currentPlayer": "Nåværende spiller"
+  "currentPlayer": "Nåværende spiller",
+
+  "turnScore": "Rundepoeng",
+  "lockedScore": "Låste poeng",
+  "player": "Spiller",
+  "bank": "Bank",
+  "pass": "Stå over",
+
+  "helperLockValidCombo": "Lås en gyldig poengkombinasjon (1/5, tre like, straight eller tre par) for å kaste på nytt.",
+  "helperMustOpen1000": "Du må åpne med minst 1000 poeng.",
+  "helperMinBank300": "Du må banke minst 300 poeng.",
+  "helperNoBankBetween": "Du kan ikke banke når totalsummen havner mellom 9000 og 10000.",
+
+  "winnerTitle": "Vinner",
+  "winnerCongrats": "Spiller {player} vinner!",
+  "@winnerCongrats": {
+    "placeholders": {
+      "player": { "type": "int" }
+    }
+  },
+  "winnerScoreLine": "Sluttsum: {score}",
+  "@winnerScoreLine": {
+    "placeholders": {
+      "score": { "type": "int" }
+    }
+  },
+  "playAgain": "Spill igjen",
+  "backToHome": "Til hovedmeny"
 }

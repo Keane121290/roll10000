@@ -124,4 +124,50 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get currentPlayer => 'Current Player';
+
+  @override
+  String get turnScore => 'Turn Score';
+
+  @override
+  String get lockedScore => 'Locked Score';
+
+  @override
+  String get player => 'Player';
+
+  @override
+  String get bank => 'Bank';
+
+  @override
+  String get pass => 'Pass';
+
+  @override
+  String get helperLockValidCombo => 'Lock a valid scoring combination (1/5, three-of-a-kind, straight, or three pairs) to roll again.';
+
+  @override
+  String get helperMustOpen1000 => 'You must open with at least 1,000 points.';
+
+  @override
+  String get helperMinBank300 => 'You must bank at least 300 points.';
+
+  @override
+  String get helperNoBankBetween => 'You cannot bank when the total would be between 9,000 and 10,000.';
+
+  @override
+  String get winnerTitle => 'Winner';
+
+  @override
+  String winnerCongrats(int player) {
+    return 'Player $player wins!';
+  }
+
+  @override
+  String winnerScoreLine(int score) {
+    return 'Final score: $score';
+  }
+
+  @override
+  String get playAgain => 'Play Again';
+
+  @override
+  String get backToHome => 'Back to Home';
 }

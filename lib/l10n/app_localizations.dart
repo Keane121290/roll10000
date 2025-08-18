@@ -328,6 +328,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Current Player'**
   String get currentPlayer;
+
+  /// No description provided for @turnScore.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn Score'**
+  String get turnScore;
+
+  /// No description provided for @lockedScore.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked Score'**
+  String get lockedScore;
+
+  /// No description provided for @player.
+  ///
+  /// In en, this message translates to:
+  /// **'Player'**
+  String get player;
+
+  /// No description provided for @bank.
+  ///
+  /// In en, this message translates to:
+  /// **'Bank'**
+  String get bank;
+
+  /// No description provided for @pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Pass'**
+  String get pass;
+
+  /// No description provided for @helperLockValidCombo.
+  ///
+  /// In en, this message translates to:
+  /// **'Lock a valid scoring combination (1/5, three-of-a-kind, straight, or three pairs) to roll again.'**
+  String get helperLockValidCombo;
+
+  /// No description provided for @helperMustOpen1000.
+  ///
+  /// In en, this message translates to:
+  /// **'You must open with at least 1,000 points.'**
+  String get helperMustOpen1000;
+
+  /// No description provided for @helperMinBank300.
+  ///
+  /// In en, this message translates to:
+  /// **'You must bank at least 300 points.'**
+  String get helperMinBank300;
+
+  /// No description provided for @helperNoBankBetween.
+  ///
+  /// In en, this message translates to:
+  /// **'You cannot bank when the total would be between 9,000 and 10,000.'**
+  String get helperNoBankBetween;
+
+  /// No description provided for @winnerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Winner'**
+  String get winnerTitle;
+
+  /// No description provided for @winnerCongrats.
+  ///
+  /// In en, this message translates to:
+  /// **'Player {player} wins!'**
+  String winnerCongrats(int player);
+
+  /// No description provided for @winnerScoreLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Final score: {score}'**
+  String winnerScoreLine(int score);
+
+  /// No description provided for @playAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Play Again'**
+  String get playAgain;
+
+  /// No description provided for @backToHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Home'**
+  String get backToHome;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
