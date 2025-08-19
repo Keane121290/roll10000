@@ -1,70 +1,63 @@
 {
   "@@locale": "en",
-  "appTitle": "10000 Roll",
+  "appTitle": "Roll 10000",
 
-  "homeTitle": "10000 Roll",
+  "homeTitle": "Roll 10000",
   "newGame": "New Game",
   "continueGame": "Continue",
-  "rulesTutorial": "Rules & Tutorial",
+  "rulesTutorial": "Rules",
   "statistics": "Statistics",
-  "settings": "Settings",
 
+  "gameSetup": "Game Setup",
+  "chooseMode": "Choose Mode",
+  "twoPlayer": "Two Players",
+  "vsCpu": "Vs Computer",
+  "difficulty": "Difficulty",
+  "easy": "Easy",
+  "medium": "Medium",
+  "hard": "Hard",
+  "rules": "Rules",
+  "confirmCombinations": "Confirm combinations",
+  "minBank300": "Minimum bank 300 points",
+  "mustOpen1000": "Must open with 1000 points",
+  "noBankBetween9000And10000": "No banking between 9000 and 10000",
+  "startGame": "Start Game",
+
+  "rulesGoal": "Reach 10000 points to win.",
+  "rulesHowToPlay": "Roll dice, keep scoring ones and fives, or combos.",
+  "rulesScoring": "1 = 100 points, 5 = 50 points, triple = value*100.",
+  "rulesOther": "If no scoring dice, your turn ends.",
+
+  "settings": "Settings",
   "language": "Language",
   "languageHint": "Tap to change language",
   "theme": "Theme",
   "lightTheme": "Light",
   "darkTheme": "Dark",
 
-  "rules": "Rules",
-  "rulesTitle": "Rules & Tutorial",
-  "rulesGoal": "Goal:\nBe the first to score exactly 10,000 points.",
-  "rulesHowToPlay": "How to play:\n- Roll six dice.\n- Set aside at least one scoring die.\n- Re-roll the rest or end turn and bank the score.\n- If no scoring dice are rolled, turn ends with 0 points.",
-  "rulesScoring": "Scoring:\n- 1s = 100 pts\n- 5s = 50 pts\n- Three 1s = 1000 pts\n- Three of a kind = 100 x number (e.g. three 4s = 400)\n- Straight (1-6) = 2000 pts\n- Three pairs = 1500 pts\n- Four/five/six of a kind = double/triple/quadruple points",
-  "rulesOther": "Other rules:\n- You must score at least 1000 in a turn to enter the game.\n- You must score at least 300 to bank points after that.",
-
-  "gameSetup": "Game Setup",
-  "chooseMode": "Choose Mode:",
-  "twoPlayer": "2 Player",
-  "vsCpu": "Player vs Computer",
-  "difficulty": "Difficulty:",
-  "easy": "Easy",
-  "medium": "Medium",
-  "hard": "Hard",
-  "startGame": "Start Game",
-
-  "confirmCombinations": "Confirm combinations",
-  "minBank300": "Min. bank 300 points",
-  "mustOpen1000": "Must open with 1000 points",
-  "noBankBetween9000And10000": "No banking between 9000 and 10000",
-
-  "score": "Score",
-  "turnScore": "Turn Score",
-  "lockedScore": "Locked Score",
-  "player": "Player",
-  "currentPlayer": "Current Player",
+  "player1": "Player 1",
+  "player2": "Player 2",
+  "turnScore": "Turn score",
   "roll": "Roll",
   "bank": "Bank",
-  "pass": "Pass",
-
-  "helperLockValidCombo": "Lock a valid scoring combination (1/5, three-of-a-kind, straight, or three pairs) to roll again.",
-  "helperMustOpen1000": "You must open with at least 1,000 points.",
-  "helperMinBank300": "You must bank at least 300 points.",
-  "helperNoBankBetween": "You cannot bank when the total would be between 9,000 and 10,000.",
+  "noScoreMessage": "No scoring dice! Turn lost.",
 
   "winnerTitle": "Winner",
-  "winnerCongrats": "Player {player} wins!",
+  "winnerCongrats": "🎉 Congratulations Player {player}!",
   "@winnerCongrats": {
     "placeholders": {
-      "player": { "type": "int" }
+      "player": {}
     }
   },
   "winnerScoreLine": "Final score: {score}",
   "@winnerScoreLine": {
     "placeholders": {
-      "score": { "type": "int" }
+      "score": {}
     }
   },
   "playAgain": "Play Again",
   "backToHome": "Back to Home",
-  "noScoreMessage": "No scoring dice - turn lost"
+  "ok": "OK",
+
+  "gameTitle": "10000"
 }

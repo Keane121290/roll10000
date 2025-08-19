@@ -9,10 +9,10 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => '10000 Roll';
+  String get appTitle => 'Roll 10000';
 
   @override
-  String get homeTitle => '10000 Roll';
+  String get homeTitle => 'Roll 10000';
 
   @override
   String get newGame => 'New Game';
@@ -21,10 +21,64 @@ class AppLocalizationsEn extends AppLocalizations {
   String get continueGame => 'Continue';
 
   @override
-  String get rulesTutorial => 'Rules & Tutorial';
+  String get rulesTutorial => 'Rules';
 
   @override
   String get statistics => 'Statistics';
+
+  @override
+  String get gameSetup => 'Game Setup';
+
+  @override
+  String get chooseMode => 'Choose Mode';
+
+  @override
+  String get twoPlayer => 'Two Players';
+
+  @override
+  String get vsCpu => 'Vs Computer';
+
+  @override
+  String get difficulty => 'Difficulty';
+
+  @override
+  String get easy => 'Easy';
+
+  @override
+  String get medium => 'Medium';
+
+  @override
+  String get hard => 'Hard';
+
+  @override
+  String get rules => 'Rules';
+
+  @override
+  String get confirmCombinations => 'Confirm combinations';
+
+  @override
+  String get minBank300 => 'Minimum bank 300 points';
+
+  @override
+  String get mustOpen1000 => 'Must open with 1000 points';
+
+  @override
+  String get noBankBetween9000And10000 => 'No banking between 9000 and 10000';
+
+  @override
+  String get startGame => 'Start Game';
+
+  @override
+  String get rulesGoal => 'Reach 10000 points to win.';
+
+  @override
+  String get rulesHowToPlay => 'Roll dice, keep scoring ones and fives, or combos.';
+
+  @override
+  String get rulesScoring => '1 = 100 points, 5 = 50 points, triple = value*100.';
+
+  @override
+  String get rulesOther => 'If no scoring dice, your turn ends.';
 
   @override
   String get settings => 'Settings';
@@ -45,76 +99,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get darkTheme => 'Dark';
 
   @override
-  String get rules => 'Rules';
+  String get player1 => 'Player 1';
 
   @override
-  String get rulesTitle => 'Rules & Tutorial';
+  String get player2 => 'Player 2';
 
   @override
-  String get rulesGoal => 'Goal:\nBe the first to score exactly 10,000 points.';
-
-  @override
-  String get rulesHowToPlay => 'How to play:\n- Roll six dice.\n- Set aside at least one scoring die.\n- Re-roll the rest or end turn and bank the score.\n- If no scoring dice are rolled, turn ends with 0 points.';
-
-  @override
-  String get rulesScoring => 'Scoring:\n- 1s = 100 pts\n- 5s = 50 pts\n- Three 1s = 1000 pts\n- Three of a kind = 100 x number (e.g. three 4s = 400)\n- Straight (1-6) = 2000 pts\n- Three pairs = 1500 pts\n- Four/five/six of a kind = double/triple/quadruple points';
-
-  @override
-  String get rulesOther => 'Other rules:\n- You must score at least 1000 in a turn to enter the game.\n- You must score at least 300 to bank points after that.';
-
-  @override
-  String get gameSetup => 'Game Setup';
-
-  @override
-  String get chooseMode => 'Choose Mode:';
-
-  @override
-  String get twoPlayer => '2 Player';
-
-  @override
-  String get vsCpu => 'Player vs Computer';
-
-  @override
-  String get difficulty => 'Difficulty:';
-
-  @override
-  String get easy => 'Easy';
-
-  @override
-  String get medium => 'Medium';
-
-  @override
-  String get hard => 'Hard';
-
-  @override
-  String get startGame => 'Start Game';
-
-  @override
-  String get confirmCombinations => 'Confirm combinations';
-
-  @override
-  String get minBank300 => 'Min. bank 300 points';
-
-  @override
-  String get mustOpen1000 => 'Must open with 1000 points';
-
-  @override
-  String get noBankBetween9000And10000 => 'No banking between 9000 and 10000';
-
-  @override
-  String get score => 'Score';
-
-  @override
-  String get turnScore => 'Turn Score';
-
-  @override
-  String get lockedScore => 'Locked Score';
-
-  @override
-  String get player => 'Player';
-
-  @override
-  String get currentPlayer => 'Current Player';
+  String get turnScore => 'Turn score';
 
   @override
   String get roll => 'Roll';
@@ -123,30 +114,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bank => 'Bank';
 
   @override
-  String get pass => 'Pass';
-
-  @override
-  String get helperLockValidCombo => 'Lock a valid scoring combination (1/5, three-of-a-kind, straight, or three pairs) to roll again.';
-
-  @override
-  String get helperMustOpen1000 => 'You must open with at least 1,000 points.';
-
-  @override
-  String get helperMinBank300 => 'You must bank at least 300 points.';
-
-  @override
-  String get helperNoBankBetween => 'You cannot bank when the total would be between 9,000 and 10,000.';
+  String get noScoreMessage => 'No scoring dice! Turn lost.';
 
   @override
   String get winnerTitle => 'Winner';
 
   @override
-  String winnerCongrats(int player) {
-    return 'Player $player wins!';
+  String winnerCongrats(Object player) {
+    return '🎉 Congratulations Player $player!';
   }
 
   @override
-  String winnerScoreLine(int score) {
+  String winnerScoreLine(Object score) {
     return 'Final score: $score';
   }
 
@@ -157,5 +136,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get backToHome => 'Back to Home';
 
   @override
-  String get noScoreMessage => 'No scoring dice - turn lost';
+  String get ok => 'OK';
+
+  @override
+  String get gameTitle => '10000';
 }

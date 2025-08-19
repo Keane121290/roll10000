@@ -1,70 +1,63 @@
 {
   "@@locale": "nb",
-  "appTitle": "10000 Roll",
+  "appTitle": "Roll 10000",
 
-  "homeTitle": "10000 Roll",
+  "homeTitle": "Roll 10000",
   "newGame": "Nytt spill",
   "continueGame": "Fortsett",
-  "rulesTutorial": "Regler og veiledning",
+  "rulesTutorial": "Regler",
   "statistics": "Statistikk",
-  "settings": "Innstillinger",
 
+  "gameSetup": "Spilloppsett",
+  "chooseMode": "Velg spillmodus",
+  "twoPlayer": "To spillere",
+  "vsCpu": "Mot datamaskin",
+  "difficulty": "Vanskelighetsgrad",
+  "easy": "Lett",
+  "medium": "Middels",
+  "hard": "Vanskelig",
+  "rules": "Regler",
+  "confirmCombinations": "Bekreft kombinasjoner",
+  "minBank300": "Minimum bank 300 poeng",
+  "mustOpen1000": "Må åpne med 1000 poeng",
+  "noBankBetween9000And10000": "Ingen banking mellom 9000 og 10000",
+  "startGame": "Start spill",
+
+  "rulesGoal": "Førstemann til 10000 poeng vinner.",
+  "rulesHowToPlay": "Kast terninger, behold ener og femmere, eller kombinasjoner.",
+  "rulesScoring": "1 = 100 poeng, 5 = 50 poeng, triple = verdi*100.",
+  "rulesOther": "Hvis ingen poenggivende terninger → turen avsluttes.",
+
+  "settings": "Innstillinger",
   "language": "Språk",
   "languageHint": "Trykk for å endre språk",
   "theme": "Tema",
   "lightTheme": "Lyst",
   "darkTheme": "Mørkt",
 
-  "rules": "Regler",
-  "rulesTitle": "Regler og veiledning",
-  "rulesGoal": "Mål:\nVær den første til å nå nøyaktig 10 000 poeng.",
-  "rulesHowToPlay": "Slik spiller du:\n- Kast seks terninger.\n- Legg til side minst én terning som gir poeng.\n- Kast resten på nytt eller avslutt runden og bank poengene.\n- Hvis ingen terninger gir poeng, ender runden med 0 poeng.",
-  "rulesScoring": "Poengberegning:\n- 1 = 100 poeng\n- 5 = 50 poeng\n- Tre 1’ere = 1000 poeng\n- Tre like = 100 x tallet (f.eks. tre 4’ere = 400)\n- Straight (1–6) = 2000 poeng\n- Tre par = 1500 poeng\n- Fire/fem/seks like = dobbel/trippel/firedobbel verdi",
-  "rulesOther": "Andre regler:\n- Du må få minst 1000 poeng i en runde for å komme inn i spillet.\n- Etter det må du få minst 300 poeng for å ta vare på poeng.",
-
-  "gameSetup": "Spilloppsett",
-  "chooseMode": "Velg modus:",
-  "twoPlayer": "2 spillere",
-  "vsCpu": "Spiller mot datamaskin",
-  "difficulty": "Vanskelighetsgrad:",
-  "easy": "Lett",
-  "medium": "Middels",
-  "hard": "Vanskelig",
-  "startGame": "Start spill",
-
-  "confirmCombinations": "Bekreft kombinasjoner",
-  "minBank300": "Min. bank 300 poeng",
-  "mustOpen1000": "Må åpne med 1000 poeng",
-  "noBankBetween9000And10000": "Ingen banking mellom 9000 og 10000",
-
-  "score": "Poeng",
+  "player1": "Spiller 1",
+  "player2": "Spiller 2",
   "turnScore": "Rundepoeng",
-  "lockedScore": "Låste poeng",
-  "player": "Spiller",
-  "currentPlayer": "Nåværende spiller",
   "roll": "Kast",
   "bank": "Bank",
-  "pass": "Stå over",
-
-  "helperLockValidCombo": "Lås en gyldig poengkombinasjon (1/5, tre like, straight eller tre par) for å kaste på nytt.",
-  "helperMustOpen1000": "Du må åpne med minst 1000 poeng.",
-  "helperMinBank300": "Du må banke minst 300 poeng.",
-  "helperNoBankBetween": "Du kan ikke banke når totalsummen havner mellom 9000 og 10000.",
+  "noScoreMessage": "Ingen poenggivende terninger! Runden tapt.",
 
   "winnerTitle": "Vinner",
-  "winnerCongrats": "Spiller {player} vinner!",
+  "winnerCongrats": "🎉 Gratulerer Spiller {player}!",
   "@winnerCongrats": {
     "placeholders": {
-      "player": { "type": "int" }
+      "player": {}
     }
   },
   "winnerScoreLine": "Sluttsum: {score}",
   "@winnerScoreLine": {
     "placeholders": {
-      "score": { "type": "int" }
+      "score": {}
     }
   },
   "playAgain": "Spill igjen",
-  "backToHome": "Til hovedmeny",
-  "noScoreMessage": "Ingen poenggivende terninger – turen tapt"
+  "backToHome": "Tilbake til Hjem",
+  "ok": "OK",
+
+  "gameTitle": "10 000"
 }
