@@ -22,7 +22,9 @@ class RouteGenerator {
       case GameSetupScreen.routeName:
         return MaterialPageRoute(builder: (_) => const GameSetupScreen());
       case GameScreen.routeName:
-        return MaterialPageRoute(builder: (_) => const GameScreen());
+        return MaterialPageRoute(
+          builder: (_) => const GameScreen(vsComputer: false), // eller dynamic
+        );
       case RulesScreen.routeName:
         return MaterialPageRoute(builder: (_) => const RulesScreen());
       case SettingsScreen.routeName:

@@ -1,270 +1,281 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import '../l10n/app_localizations.dart';
+import 'package:roll10000/l10n/app_localizations.dart';
+import 'package:roll10000/screens/winner_screen.dart';
 
 class GameScreen extends StatefulWidget {
   static const routeName = '/game';
 
-  const GameScreen({super.key});
+  final bool vsComputer;
+
+  const GameScreen({super.key, required this.vsComputer});
 
   @override
   State<GameScreen> createState() => _GameScreenState();
 }
 
 class _GameScreenState extends State<GameScreen> {
-  List<int> dice = List.filled(6, 1); // start med 6 enere
-  List<bool> locked = List.filled(6, false);
-
-  int currentPlayer = 1;
-  List<int> playerScores = [0, 0];
-  int turnScore = 0;
-
-  bool showNoScoreMessage = false;
   final Random _random = Random();
 
-  @override
-  void initState() {
-    super.initState();
-    _rollDice(firstRoll: true);
-  }
+  // Start med 6 enere på brettet
+  List<int> dice = [1, 1, 1, 1, 1, 1];
+  List<bool> locked = [false, false, false, false, false, false];
 
-  void _rollDice({bool firstRoll = false}) {
+  int currentPlayer = 0; // 0 = Player 1, 1 = Player 2/CPU
+  List<int> bankedScores = [0, 0];
+
+  int turnScore = 0;
+  bool rolling = false;
+  bool showNoScoreMessage = false;
+
+  // --- Kast / animasjon ---
+  Future<void> _rollDice() async {
+    if (rolling) return;
+
     setState(() {
-      for (int i = 0; i < dice.length; i++) {
-        if (!locked[i] || firstRoll) {
-          dice[i] = _random.nextInt(6) + 1;
-          if (firstRoll) locked[i] = false;
-        }
-      }
-
-      // Sjekk om kastet i det hele tatt gir poengmulighet
-      if (!_rollHasAnyScore(dice)) {
-        showNoScoreMessage = true;
-        Timer(const Duration(seconds: 2), () {
-          _endTurn(resetTurnScore: true);
-        });
-      } else {
-        showNoScoreMessage = false;
-      }
+      rolling = true;
+      showNoScoreMessage = false;
     });
+
+    // Liten "kast"-animasjon for de terningene som IKKE er låst
+    for (int t = 0; t < 10; t++) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      setState(() {
+        for (int i = 0; i < 6; i++) {
+          if (!locked[i]) {
+            dice[i] = _random.nextInt(6) + 1;
+          }
+        }
+      });
+    }
+
+    setState(() {
+      rolling = false;
+    });
+
+    // Hvis kastet ikke inneholder noen poenggivende terninger (1 eller 5),
+    // vis melding og bytt tur etter 2 sekunder
+    if (!_hasScoringDice()) {
+      _handleNoScore();
+    }
   }
 
+  // --- Låsing / poeng ---
   void _toggleLock(int index) {
+    if (rolling) return;
+
     setState(() {
       locked[index] = !locked[index];
     });
+    _updateTurnScore();
   }
 
-  int _calculateScore(List<int> values) {
+  void _updateTurnScore() {
     int score = 0;
-    List<int> counts = List.filled(7, 0);
-    for (var v in values) {
-      counts[v]++;
-    }
-
-    // 1s og 5s
-    score += counts[1] % 3 * 100;
-    score += counts[5] % 3 * 50;
-
-    // tre eller flere like
-    for (int i = 1; i <= 6; i++) {
-      if (counts[i] >= 3) {
-        score += (i == 1 ? 1000 : i * 100) * (counts[i] - 2);
+    for (int i = 0; i < 6; i++) {
+      if (locked[i]) {
+        score += _scoreForDie(dice[i]);
       }
     }
-
-    // straight 1-6
-    if (counts.every((c) => c == 1)) {
-      score += 2000;
-    }
-
-    // tre par
-    if (counts.where((c) => c == 2).length == 3) {
-      score += 1500;
-    }
-
-    return score;
+    setState(() {
+      turnScore = score;
+    });
   }
 
-  bool _rollHasAnyScore(List<int> values) {
-    return _calculateScore(values) > 0;
+  int _scoreForDie(int die) {
+    if (die == 1) return 100;
+    if (die == 5) return 50;
+    return 0;
   }
 
+  bool _hasScoringDice() {
+    for (int i = 0; i < 6; i++) {
+      if (!locked[i] && _scoreForDie(dice[i]) > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // --- Bank / turbytte / vinner ---
   void _bankScore() {
-    int lockedScore = _calculateScore(
-        [for (int i = 0; i < dice.length; i++) if (locked[i]) dice[i]]);
-    if (lockedScore == 0) return;
+    if (turnScore == 0) return;
 
     setState(() {
-      turnScore += lockedScore;
-      playerScores[currentPlayer - 1] += turnScore;
+      bankedScores[currentPlayer] += turnScore;
       turnScore = 0;
-      locked = List.filled(6, false);
-
-      if (playerScores[currentPlayer - 1] >= 10000) {
-        _showWinner(currentPlayer, playerScores[currentPlayer - 1]);
-      } else {
-        _switchPlayer();
-        _rollDice(firstRoll: true);
-      }
+      locked = [false, false, false, false, false, false];
     });
+
+    if (bankedScores[currentPlayer] >= 10000) {
+      // Bruk pushNamed + Map arguments (ikke WinnerScreenArgs)
+      Navigator.pushNamed(
+        context,
+        WinnerScreen.routeName,
+        arguments: {
+          'winnerPlayerIndex': currentPlayer,
+          'winnerScore': bankedScores[currentPlayer],
+        },
+      );
+      return;
+    }
+
+    _endTurn();
   }
 
-  void _endTurn({bool resetTurnScore = false}) {
+  void _endTurn() {
     setState(() {
-      if (resetTurnScore) {
-        turnScore = 0;
-      }
-      locked = List.filled(6, false);
-      _switchPlayer();
-      _rollDice(firstRoll: true);
+      currentPlayer = (currentPlayer + 1) % 2;
+      locked = [false, false, false, false, false, false];
+      dice = [1, 1, 1, 1, 1, 1]; // neste spiller ser 6 enere til de kaster
+      turnScore = 0;
+      showNoScoreMessage = false;
     });
   }
 
-  void _switchPlayer() {
-    currentPlayer = currentPlayer == 1 ? 2 : 1;
-  }
+  void _handleNoScore() {
+    final l = AppLocalizations.of(context)!;
 
-  void _showWinner(int playerNumber, int score) {
-    Navigator.pushReplacementNamed(context, '/winner', arguments: {
-      'player': playerNumber,
-      'score': score,
+    setState(() {
+      showNoScoreMessage = true;
+      turnScore = 0;
+      locked = [false, false, false, false, false, false];
     });
-  }
 
-  Widget _buildPlayerBox(String name, int score, bool isActive) {
-    final theme = Theme.of(context);
-    return Container(
-      width: 150,
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: isActive
-            ? theme.colorScheme.primary.withValues(alpha: 0.15)
-            : theme.colorScheme.surfaceContainerHighest,
-        border: Border.all(
-          color: isActive ? theme.colorScheme.primary : Colors.transparent,
-          width: 3,
-        ),
-        borderRadius: BorderRadius.circular(12),
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(l.noScoreMessage),
+        duration: const Duration(seconds: 2),
+        behavior: SnackBarBehavior.floating,
       ),
-      child: Column(
+    );
+
+    Future.delayed(const Duration(seconds: 2), () {
+      if (!mounted) return;
+      _endTurn();
+    });
+  }
+
+  // --- UI ---
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l.gameTitle),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            name,
-            style: theme.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
+          // Spillere og bankede poeng (markér aktiv spiller)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _buildPlayerBox(l.player1, bankedScores[0], currentPlayer == 0),
+              _buildPlayerBox(
+                widget.vsComputer ? "CPU" : l.player2,
+                bankedScores[1],
+                currentPlayer == 1,
+              ),
+            ],
           ),
-          Text(
-            "$score",
-            style: theme.textTheme.headlineSmall?.copyWith(
-              color: theme.colorScheme.primary,
-            ),
+          const SizedBox(height: 20),
+
+          // Terninger (fast 3 + 3 layout)
+          Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(3, (i) => _buildDie(i)),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(3, (i) => _buildDie(i + 3)),
+              ),
+            ],
           ),
+
+          const SizedBox(height: 20),
+
+          // Turn score
+          Text(
+            "(${l.turnScore}: $turnScore)",
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+
+          const SizedBox(height: 20),
+
+          // Roll + Bank
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                // Om du vil: krev at minst én poenggivende terning er låst før ny kast
+                onPressed: rolling ? null : _rollDice,
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(120, 50),
+                ),
+                child: Text(l.roll),
+              ),
+              ElevatedButton(
+                onPressed: turnScore > 0 ? _bankScore : null,
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(120, 50),
+                ),
+                child: Text(l.bank),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 20),
+
+          // "No score"-melding (bruk ARB-nøkkelen noScoreMessage)
+          if (showNoScoreMessage)
+            Text(
+              l.noScoreMessage,
+              style: const TextStyle(color: Colors.red, fontSize: 18),
+              textAlign: TextAlign.center,
+            ),
         ],
       ),
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final l = AppLocalizations.of(context)!;
-
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text(l.gameTitle),
-        backgroundColor: theme.colorScheme.surface,
+  Widget _buildPlayerBox(String name, int score, bool isActive) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: isActive ? Colors.green[300] : Colors.grey[300],
+        borderRadius: BorderRadius.circular(8),
       ),
-      backgroundColor: theme.colorScheme.surface,
-      body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 12),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _buildPlayerBox(l.player1, playerScores[0], currentPlayer == 1),
-                _buildPlayerBox(l.player2, playerScores[1], currentPlayer == 2),
-              ],
-            ),
-            const SizedBox(height: 20),
+      child: Column(
+        children: [
+          Text(name, style: const TextStyle(fontSize: 18)),
+          Text("$score", style: const TextStyle(fontSize: 16)),
+        ],
+      ),
+    );
+  }
 
-            // Dice grid: alltid 3 + 3
-            GridView.builder(
-              shrinkWrap: true,
-              itemCount: dice.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-              ),
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () => _toggleLock(index),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: locked[index]
-                            ? theme.colorScheme.primary
-                            : Colors.transparent,
-                        width: 3,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Image.asset(
-                      'assets/dice/standard/die_${dice[index]}.png',
-                    ),
-                  ),
-                );
-              },
-            ),
-
-            const SizedBox(height: 16),
-            Text(
-              "${l.turnScore}: $turnScore",
-              style: theme.textTheme.titleMedium,
-            ),
-            const SizedBox(height: 16),
-
-            if (showNoScoreMessage)
-              Text(
-                l.noScoreMessage,
-                style: TextStyle(color: theme.colorScheme.error, fontSize: 16),
-              ),
-
-            const Spacer(),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: locked.any((e) => e)
-                      ? () => _rollDice()
-                      : null, // må ha minst én låst
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 32, vertical: 16),
-                  ),
-                  child: Text(l.roll),
-                ),
-                ElevatedButton(
-                  onPressed: locked.any((e) => e) ? _bankScore : null,
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 32, vertical: 16),
-                  ),
-                  child: Text(l.bank),
-                ),
-              ],
-            ),
-            const SizedBox(height: 24),
-          ],
+  Widget _buildDie(int index) {
+    return GestureDetector(
+      onTap: () => _toggleLock(index),
+      child: Padding(
+        padding: const EdgeInsets.all(6.0),
+        child: Opacity(
+          opacity: locked[index] ? 0.5 : 1.0,
+          child: Image.asset(
+            'assets/dice/standard/die_${dice[index]}.png',
+            width: 60,
+            height: 60,
+          ),
         ),
       ),
     );
