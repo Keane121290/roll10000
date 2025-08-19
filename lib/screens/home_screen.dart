@@ -28,22 +28,22 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () => Navigator.pushNamed(context, '/game-setup'),
-                child: Text(localizations.homeNewGame),
+                child: Text(localizations.newGame),
               ),
               const SizedBox(height: 12),
               ElevatedButton(
                 onPressed: () {},
-                child: Text(localizations.homeContinue),
+                child: Text(localizations.continueGame),
               ),
               const SizedBox(height: 12),
               ElevatedButton(
                 onPressed: () => Navigator.pushNamed(context, '/rules'),
-                child: Text(localizations.homeRules),
+                child: Text(localizations.rulesTutorial),
               ),
               const SizedBox(height: 12),
               ElevatedButton(
                 onPressed: () => Navigator.pushNamed(context, '/statistics'),
-                child: Text(localizations.homeStatistics),
+                child: Text(localizations.statistics),
               ),
               const Spacer(),
               Align(

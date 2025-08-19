@@ -6,7 +6,7 @@ import 'game_setup_screen.dart';
 class WinnerScreen extends StatelessWidget {
   static const routeName = '/winner';
 
-  final int winnerPlayerIndex; // 0-basert (0 -> Spiller 1, 1 -> Spiller 2)
+  final int winnerPlayerIndex; // 0 -> Spiller 1, 1 -> Spiller 2
   final int winnerScore;
 
   const WinnerScreen({
@@ -19,13 +19,10 @@ class WinnerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
-
     final playerNumber = winnerPlayerIndex + 1;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(l.winnerTitle),
-      ),
+      appBar: AppBar(title: Text(l.winnerTitle)),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
@@ -45,7 +42,6 @@ class WinnerScreen extends StatelessWidget {
             const SizedBox(height: 32),
             ElevatedButton(
               onPressed: () {
-                // Nytt spill (gå til GameSetup)
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   GameSetupScreen.routeName,
@@ -57,7 +53,6 @@ class WinnerScreen extends StatelessWidget {
             const SizedBox(height: 12),
             OutlinedButton(
               onPressed: () {
-                // Til Hjem
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   HomeScreen.routeName,

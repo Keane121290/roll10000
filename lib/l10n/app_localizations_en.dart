@@ -9,7 +9,22 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'Roll10000';
+  String get appTitle => '10000 Roll';
+
+  @override
+  String get homeTitle => '10000 Roll';
+
+  @override
+  String get newGame => 'New Game';
+
+  @override
+  String get continueGame => 'Continue';
+
+  @override
+  String get rulesTutorial => 'Rules & Tutorial';
+
+  @override
+  String get statistics => 'Statistics';
 
   @override
   String get settings => 'Settings';
@@ -30,10 +45,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get darkTheme => 'Dark';
 
   @override
-  String get rules => 'Rules & Tutorial';
+  String get rules => 'Rules';
 
   @override
-  String get statistics => 'Statistics';
+  String get rulesTitle => 'Rules & Tutorial';
 
   @override
   String get rulesGoal => 'Goal:\nBe the first to score exactly 10,000 points.';
@@ -48,21 +63,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rulesOther => 'Other rules:\n- You must score at least 1000 in a turn to enter the game.\n- You must score at least 300 to bank points after that.';
 
   @override
-  String get homeTitle => '10000 Roll';
-
-  @override
-  String get homeNewGame => 'New Game';
-
-  @override
-  String get homeContinue => 'Continue';
-
-  @override
-  String get homeRules => 'Rules & Tutorial';
-
-  @override
-  String get homeStatistics => 'Statistics';
-
-  @override
   String get gameSetup => 'Game Setup';
 
   @override
@@ -72,58 +72,37 @@ class AppLocalizationsEn extends AppLocalizations {
   String get twoPlayer => '2 Player';
 
   @override
-  String get vsComputer => 'Player vs Computer';
+  String get vsCpu => 'Player vs Computer';
 
   @override
   String get difficulty => 'Difficulty:';
 
   @override
-  String get difficultyEasy => 'Easy';
+  String get easy => 'Easy';
 
   @override
-  String get difficultyMedium => 'Medium';
+  String get medium => 'Medium';
 
   @override
-  String get difficultyHard => 'Hard';
-
-  @override
-  String get rulesSection => 'Rules:';
-
-  @override
-  String get ruleConfirmCombinations => 'Confirm combinations';
-
-  @override
-  String get ruleMinBank300 => 'Min. bank 300 points';
-
-  @override
-  String get ruleMustOpen1000 => 'Must open with 1000 points';
-
-  @override
-  String get ruleNoBankBetween9000 => 'No banking between 9000 and 10000';
+  String get hard => 'Hard';
 
   @override
   String get startGame => 'Start Game';
 
   @override
-  String get roll => 'Roll';
+  String get confirmCombinations => 'Confirm combinations';
+
+  @override
+  String get minBank300 => 'Min. bank 300 points';
+
+  @override
+  String get mustOpen1000 => 'Must open with 1000 points';
+
+  @override
+  String get noBankBetween9000And10000 => 'No banking between 9000 and 10000';
 
   @override
   String get score => 'Score';
-
-  @override
-  String get nextPlayer => 'Next Player';
-
-  @override
-  String get endTurn => 'End Turn';
-
-  @override
-  String get noScoreMessage => 'No scoring dice! Your turn ends with 0 points.';
-
-  @override
-  String get bankedMessage => 'Points banked!';
-
-  @override
-  String get currentPlayer => 'Current Player';
 
   @override
   String get turnScore => 'Turn Score';
@@ -133,6 +112,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get player => 'Player';
+
+  @override
+  String get currentPlayer => 'Current Player';
+
+  @override
+  String get roll => 'Roll';
 
   @override
   String get bank => 'Bank';

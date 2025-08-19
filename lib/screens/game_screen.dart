@@ -17,9 +17,9 @@ class _GameScreenState extends State<GameScreen> {
   // 0 = blank start (die_0.png)
   List<int> dice = List.filled(6, 0);
 
-  // Midlertidig låste (kan toggles fritt etter kast – må utgjøre gyldig poeng)
+  // Låste terninger (kan toggles fritt mellom kast – må utgjøre gyldig poeng for at Roll/Bank skal være aktiv)
   Set<int> locked = {};
-  // Frosne (allerede lagt til rundepoeng; kastes ikke igjen; kan ikke toggles)
+  // Frosne terninger (allerede lagt til rundepoeng; kastes ikke igjen; kan ikke toggles)
   Set<int> frozen = {};
 
   // Poeng i pågående runde
@@ -36,6 +36,7 @@ class _GameScreenState extends State<GameScreen> {
   bool ruleNoBankBetween9000And10000 = true;
 
   bool get isFirstRoll => dice.contains(0);
+  bool get allSixFrozen => frozen.length == 6;
 
   @override
   void didChangeDependencies() {
@@ -108,6 +109,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   int get lockedScore => _scoreForIndices(locked);
+
   bool _lockedIsValidScoringSubset() {
     if (locked.isEmpty) return false;
 
@@ -126,7 +128,7 @@ class _GameScreenState extends State<GameScreen> {
         locked.length == 6 && counts.values.where((c) => c == 2).length == 3;
     if (isStraight || isThreePairs) return true;
 
-    // Ellers: ingen “døde” (2/3/4/6 må være >=3 når de låses)
+    // Ellers: ingen “døde” (2/3/4/6 må være >=3 hvis de låses)
     for (int value = 2; value <= 6; value++) {
       if (value == 5) continue;
       final c = counts[value] ?? 0;
@@ -136,14 +138,12 @@ class _GameScreenState extends State<GameScreen> {
     return _scoreCounts(counts, locked.length) > 0;
   }
 
-  bool get allSixFrozen => frozen.length == 6;
-
   // ---------- STATE HELPERS ----------
 
   // Første kast: alltid lov. Etterpå: lov hvis locked er gyldig poengkombinasjon.
   bool get canRoll => isFirstRoll || _lockedIsValidScoringSubset();
 
-  // Bank: locked må være gyldig og bank-regler oppfylt
+  // Bank er lov hvis locked er gyldig + bankeregler oppfylt
   bool get canBank {
     if (!_lockedIsValidScoringSubset()) return false;
     final addNow = lockedScore;
@@ -178,20 +178,20 @@ class _GameScreenState extends State<GameScreen> {
     if (!canRoll) return;
 
     setState(() {
-      // 1) Legg poeng fra locked til turnScore, og flytt dem til frozen.
+      // 1) Legg poeng fra locked til turnScore, og frys dem
       final add = lockedScore;
       turnScore += add;
       frozen.addAll(locked);
       locked.clear();
 
-      // 2) Hot dice? (alle 6 frosne) → frigjør og kast alle 6 på nytt.
+      // 2) Hot dice? → nullstill frosne og kast alle 6
       if (allSixFrozen) {
         frozen.clear();
         dice = List.generate(6, (_) => _random.nextInt(6) + 1);
       } else {
         // 3) Kast bare de som ikke er frosne
         dice = List.generate(6, (i) {
-          if (frozen.contains(i)) return dice[i]; // behold frosne
+          if (frozen.contains(i)) return dice[i];
           return _random.nextInt(6) + 1;
         });
       }
@@ -199,7 +199,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _toggleLock(int index) {
-    // Første klikk før første kast → gjør første kast
+    // Første trykk før kast → gjør første kast
     if (dice[index] == 0 && isFirstRoll) {
       _firstRoll();
       return;
@@ -230,7 +230,7 @@ class _GameScreenState extends State<GameScreen> {
       }
     });
 
-    // Vinner-sjekk (>= 10000)
+    // Vinner-sjekk (≥ 10000)
     if (nextTotal >= 10000) {
       Navigator.pushNamedAndRemoveUntil(
         context,
@@ -276,8 +276,7 @@ class _GameScreenState extends State<GameScreen> {
     String? helper;
     if (!isFirstRoll) {
       if (!canRoll) {
-        helper =
-            l.helperLockValidCombo; // “Lås en gyldig poengkombinasjon …”
+        helper = l.helperLockValidCombo;
       } else if (!canBank) {
         final candidate = turnScore + lockedScore;
         if (!hasOpened[currentPlayer] && ruleMustOpen1000 && candidate < 1000) {
@@ -287,7 +286,6 @@ class _GameScreenState extends State<GameScreen> {
             candidate < 300) {
           helper = l.helperMinBank300;
         } else {
-          // kan være sperret av 9000–10000-regelen
           final projected = totalScores[currentPlayer] + candidate;
           if (ruleNoBankBetween9000And10000 &&
               projected > 9000 &&
@@ -354,9 +352,9 @@ class _GameScreenState extends State<GameScreen> {
 
                   Color borderColor = Colors.transparent;
                   if (isFrozen) {
-                    borderColor = Colors.green; // frosne = banket i runden
+                    borderColor = Colors.green; // frosne (i turnScore)
                   } else if (isLocked) {
-                    borderColor = Colors.orange; // valgt nå
+                    borderColor = Colors.orange; // valgt for neste roll/bank
                   }
 
                   return GestureDetector(
@@ -385,7 +383,7 @@ class _GameScreenState extends State<GameScreen> {
                 ),
 
               const Spacer(),
-              // Løft knappene litt opp
+              // Knapper litt opp fra bunn
               Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: Row(

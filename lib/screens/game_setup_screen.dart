@@ -45,7 +45,8 @@ class _GameSetupScreenState extends State<GameSetupScreen> {
     await prefs.setBool('confirmCombinations', confirmCombinations);
     await prefs.setBool('minBank300', minBank300);
     await prefs.setBool('mustOpenWith1000', mustOpenWith1000);
-    await prefs.setBool('noBankBetween9000And10000', noBankBetween9000And10000);
+    await prefs.setBool('noBankBetween9000And10000',
+        noBankBetween9000And10000);
   }
 
   void _startGame() async {
@@ -95,7 +96,7 @@ class _GameSetupScreenState extends State<GameSetupScreen> {
               value: true,
               groupValue: playAgainstCpu,
               onChanged: (value) => setState(() => playAgainstCpu = value!),
-              title: Text(localizations.vsComputer),
+              title: Text(localizations.vsCpu),
             ),
             if (playAgainstCpu) ...[
               const SizedBox(height: 16),
@@ -108,41 +109,40 @@ class _GameSetupScreenState extends State<GameSetupScreen> {
                 onChanged: (value) => setState(() => difficulty = value!),
                 items: [
                   DropdownMenuItem(
-                      value: 'Easy', child: Text(localizations.difficultyEasy)),
+                      value: 'Easy', child: Text(localizations.easy)),
                   DropdownMenuItem(
-                      value: 'Medium',
-                      child: Text(localizations.difficultyMedium)),
+                      value: 'Medium', child: Text(localizations.medium)),
                   DropdownMenuItem(
-                      value: 'Hard', child: Text(localizations.difficultyHard)),
+                      value: 'Hard', child: Text(localizations.hard)),
                 ],
               ),
             ],
             const Divider(height: 32),
             Text(
-              localizations.rulesSection,
+              localizations.rules,
               style: theme.textTheme.titleLarge,
             ),
             CheckboxListTile(
               value: confirmCombinations,
               onChanged: (value) =>
                   setState(() => confirmCombinations = value!),
-              title: Text(localizations.ruleConfirmCombinations),
+              title: Text(localizations.confirmCombinations),
             ),
             CheckboxListTile(
               value: minBank300,
               onChanged: (value) => setState(() => minBank300 = value!),
-              title: Text(localizations.ruleMinBank300),
+              title: Text(localizations.minBank300),
             ),
             CheckboxListTile(
               value: mustOpenWith1000,
               onChanged: (value) => setState(() => mustOpenWith1000 = value!),
-              title: Text(localizations.ruleMustOpen1000),
+              title: Text(localizations.mustOpen1000),
             ),
             CheckboxListTile(
               value: noBankBetween9000And10000,
               onChanged: (value) =>
                   setState(() => noBankBetween9000And10000 = value!),
-              title: Text(localizations.ruleNoBankBetween9000),
+              title: Text(localizations.noBankBetween9000And10000),
             ),
             const SizedBox(height: 24),
             ElevatedButton(

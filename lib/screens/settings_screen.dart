@@ -29,7 +29,7 @@ class SettingsScreen extends StatelessWidget {
           const Divider(height: 1),
           ListTile(
             title: Text(localizations.theme),
-            subtitle: Text(localizations.lightTheme + " / " + localizations.darkTheme),
+            subtitle: Text("${localizations.lightTheme} / ${localizations.darkTheme}"),
             trailing: const Icon(Icons.chevron_right),
             onTap: () {
               Navigator.pushNamed(context, ThemeSelectionScreen.routeName);

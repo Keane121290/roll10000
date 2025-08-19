@@ -9,7 +9,22 @@ class AppLocalizationsNb extends AppLocalizations {
   AppLocalizationsNb([String locale = 'nb']) : super(locale);
 
   @override
-  String get appTitle => 'Roll10000';
+  String get appTitle => '10000 Roll';
+
+  @override
+  String get homeTitle => '10000 Roll';
+
+  @override
+  String get newGame => 'Nytt spill';
+
+  @override
+  String get continueGame => 'Fortsett';
+
+  @override
+  String get rulesTutorial => 'Regler og veiledning';
+
+  @override
+  String get statistics => 'Statistikk';
 
   @override
   String get settings => 'Innstillinger';
@@ -30,37 +45,22 @@ class AppLocalizationsNb extends AppLocalizations {
   String get darkTheme => 'Mørkt';
 
   @override
-  String get rules => 'Regler og veiledning';
+  String get rules => 'Regler';
 
   @override
-  String get statistics => 'Statistikk';
+  String get rulesTitle => 'Regler og veiledning';
 
   @override
   String get rulesGoal => 'Mål:\nVær den første til å nå nøyaktig 10 000 poeng.';
 
   @override
-  String get rulesHowToPlay => 'Slik spiller du:\n- Kast seks terninger.\n- Legg til side minst én terning som gir poeng.\n- Kast resten på nytt eller avslutt runden og ta poengene.\n- Hvis ingen terninger gir poeng, ender runden med 0 poeng.';
+  String get rulesHowToPlay => 'Slik spiller du:\n- Kast seks terninger.\n- Legg til side minst én terning som gir poeng.\n- Kast resten på nytt eller avslutt runden og bank poengene.\n- Hvis ingen terninger gir poeng, ender runden med 0 poeng.';
 
   @override
-  String get rulesScoring => 'Poengberegning:\n- 1 = 100 poeng\n- 5 = 50 poeng\n- Tre 1’ere = 1000 poeng\n- Tre like = 100 x tallet (f.eks. tre 4’ere = 400)\n- Straight (1-6) = 2000 poeng\n- Tre par = 1500 poeng\n- Fire/fem/seks like = dobbel/trippel/firedobbel verdi';
+  String get rulesScoring => 'Poengberegning:\n- 1 = 100 poeng\n- 5 = 50 poeng\n- Tre 1’ere = 1000 poeng\n- Tre like = 100 x tallet (f.eks. tre 4’ere = 400)\n- Straight (1–6) = 2000 poeng\n- Tre par = 1500 poeng\n- Fire/fem/seks like = dobbel/trippel/firedobbel verdi';
 
   @override
   String get rulesOther => 'Andre regler:\n- Du må få minst 1000 poeng i en runde for å komme inn i spillet.\n- Etter det må du få minst 300 poeng for å ta vare på poeng.';
-
-  @override
-  String get homeTitle => '10000 Roll';
-
-  @override
-  String get homeNewGame => 'Nytt spill';
-
-  @override
-  String get homeContinue => 'Fortsett';
-
-  @override
-  String get homeRules => 'Regler og veiledning';
-
-  @override
-  String get homeStatistics => 'Statistikk';
 
   @override
   String get gameSetup => 'Spilloppsett';
@@ -72,58 +72,37 @@ class AppLocalizationsNb extends AppLocalizations {
   String get twoPlayer => '2 spillere';
 
   @override
-  String get vsComputer => 'Spiller mot datamaskin';
+  String get vsCpu => 'Spiller mot datamaskin';
 
   @override
   String get difficulty => 'Vanskelighetsgrad:';
 
   @override
-  String get difficultyEasy => 'Lett';
+  String get easy => 'Lett';
 
   @override
-  String get difficultyMedium => 'Middels';
+  String get medium => 'Middels';
 
   @override
-  String get difficultyHard => 'Vanskelig';
-
-  @override
-  String get rulesSection => 'Regler:';
-
-  @override
-  String get ruleConfirmCombinations => 'Bekreft kombinasjoner';
-
-  @override
-  String get ruleMinBank300 => 'Min. bank 300 poeng';
-
-  @override
-  String get ruleMustOpen1000 => 'Må åpne med 1000 poeng';
-
-  @override
-  String get ruleNoBankBetween9000 => 'Ingen banking mellom 9000 og 10000';
+  String get hard => 'Vanskelig';
 
   @override
   String get startGame => 'Start spill';
 
   @override
-  String get roll => 'Kast';
+  String get confirmCombinations => 'Bekreft kombinasjoner';
+
+  @override
+  String get minBank300 => 'Min. bank 300 poeng';
+
+  @override
+  String get mustOpen1000 => 'Må åpne med 1000 poeng';
+
+  @override
+  String get noBankBetween9000And10000 => 'Ingen banking mellom 9000 og 10000';
 
   @override
   String get score => 'Poeng';
-
-  @override
-  String get nextPlayer => 'Neste spiller';
-
-  @override
-  String get endTurn => 'Avslutt runde';
-
-  @override
-  String get noScoreMessage => 'Ingen terninger gir poeng! Runden ender med 0 poeng.';
-
-  @override
-  String get bankedMessage => 'Poeng lagret!';
-
-  @override
-  String get currentPlayer => 'Nåværende spiller';
 
   @override
   String get turnScore => 'Rundepoeng';
@@ -133,6 +112,12 @@ class AppLocalizationsNb extends AppLocalizations {
 
   @override
   String get player => 'Spiller';
+
+  @override
+  String get currentPlayer => 'Nåværende spiller';
+
+  @override
+  String get roll => 'Kast';
 
   @override
   String get bank => 'Bank';

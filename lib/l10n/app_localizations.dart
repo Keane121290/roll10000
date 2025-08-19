@@ -98,8 +98,38 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'Roll10000'**
+  /// **'10000 Roll'**
   String get appTitle;
+
+  /// No description provided for @homeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'10000 Roll'**
+  String get homeTitle;
+
+  /// No description provided for @newGame.
+  ///
+  /// In en, this message translates to:
+  /// **'New Game'**
+  String get newGame;
+
+  /// No description provided for @continueGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueGame;
+
+  /// No description provided for @rulesTutorial.
+  ///
+  /// In en, this message translates to:
+  /// **'Rules & Tutorial'**
+  String get rulesTutorial;
+
+  /// No description provided for @statistics.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics'**
+  String get statistics;
 
   /// No description provided for @settings.
   ///
@@ -140,14 +170,14 @@ abstract class AppLocalizations {
   /// No description provided for @rules.
   ///
   /// In en, this message translates to:
-  /// **'Rules & Tutorial'**
+  /// **'Rules'**
   String get rules;
 
-  /// No description provided for @statistics.
+  /// No description provided for @rulesTitle.
   ///
   /// In en, this message translates to:
-  /// **'Statistics'**
-  String get statistics;
+  /// **'Rules & Tutorial'**
+  String get rulesTitle;
 
   /// No description provided for @rulesGoal.
   ///
@@ -173,36 +203,6 @@ abstract class AppLocalizations {
   /// **'Other rules:\n- You must score at least 1000 in a turn to enter the game.\n- You must score at least 300 to bank points after that.'**
   String get rulesOther;
 
-  /// No description provided for @homeTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'10000 Roll'**
-  String get homeTitle;
-
-  /// No description provided for @homeNewGame.
-  ///
-  /// In en, this message translates to:
-  /// **'New Game'**
-  String get homeNewGame;
-
-  /// No description provided for @homeContinue.
-  ///
-  /// In en, this message translates to:
-  /// **'Continue'**
-  String get homeContinue;
-
-  /// No description provided for @homeRules.
-  ///
-  /// In en, this message translates to:
-  /// **'Rules & Tutorial'**
-  String get homeRules;
-
-  /// No description provided for @homeStatistics.
-  ///
-  /// In en, this message translates to:
-  /// **'Statistics'**
-  String get homeStatistics;
-
   /// No description provided for @gameSetup.
   ///
   /// In en, this message translates to:
@@ -221,11 +221,11 @@ abstract class AppLocalizations {
   /// **'2 Player'**
   String get twoPlayer;
 
-  /// No description provided for @vsComputer.
+  /// No description provided for @vsCpu.
   ///
   /// In en, this message translates to:
   /// **'Player vs Computer'**
-  String get vsComputer;
+  String get vsCpu;
 
   /// No description provided for @difficulty.
   ///
@@ -233,53 +233,23 @@ abstract class AppLocalizations {
   /// **'Difficulty:'**
   String get difficulty;
 
-  /// No description provided for @difficultyEasy.
+  /// No description provided for @easy.
   ///
   /// In en, this message translates to:
   /// **'Easy'**
-  String get difficultyEasy;
+  String get easy;
 
-  /// No description provided for @difficultyMedium.
+  /// No description provided for @medium.
   ///
   /// In en, this message translates to:
   /// **'Medium'**
-  String get difficultyMedium;
+  String get medium;
 
-  /// No description provided for @difficultyHard.
+  /// No description provided for @hard.
   ///
   /// In en, this message translates to:
   /// **'Hard'**
-  String get difficultyHard;
-
-  /// No description provided for @rulesSection.
-  ///
-  /// In en, this message translates to:
-  /// **'Rules:'**
-  String get rulesSection;
-
-  /// No description provided for @ruleConfirmCombinations.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm combinations'**
-  String get ruleConfirmCombinations;
-
-  /// No description provided for @ruleMinBank300.
-  ///
-  /// In en, this message translates to:
-  /// **'Min. bank 300 points'**
-  String get ruleMinBank300;
-
-  /// No description provided for @ruleMustOpen1000.
-  ///
-  /// In en, this message translates to:
-  /// **'Must open with 1000 points'**
-  String get ruleMustOpen1000;
-
-  /// No description provided for @ruleNoBankBetween9000.
-  ///
-  /// In en, this message translates to:
-  /// **'No banking between 9000 and 10000'**
-  String get ruleNoBankBetween9000;
+  String get hard;
 
   /// No description provided for @startGame.
   ///
@@ -287,47 +257,35 @@ abstract class AppLocalizations {
   /// **'Start Game'**
   String get startGame;
 
-  /// No description provided for @roll.
+  /// No description provided for @confirmCombinations.
   ///
   /// In en, this message translates to:
-  /// **'Roll'**
-  String get roll;
+  /// **'Confirm combinations'**
+  String get confirmCombinations;
+
+  /// No description provided for @minBank300.
+  ///
+  /// In en, this message translates to:
+  /// **'Min. bank 300 points'**
+  String get minBank300;
+
+  /// No description provided for @mustOpen1000.
+  ///
+  /// In en, this message translates to:
+  /// **'Must open with 1000 points'**
+  String get mustOpen1000;
+
+  /// No description provided for @noBankBetween9000And10000.
+  ///
+  /// In en, this message translates to:
+  /// **'No banking between 9000 and 10000'**
+  String get noBankBetween9000And10000;
 
   /// No description provided for @score.
   ///
   /// In en, this message translates to:
   /// **'Score'**
   String get score;
-
-  /// No description provided for @nextPlayer.
-  ///
-  /// In en, this message translates to:
-  /// **'Next Player'**
-  String get nextPlayer;
-
-  /// No description provided for @endTurn.
-  ///
-  /// In en, this message translates to:
-  /// **'End Turn'**
-  String get endTurn;
-
-  /// No description provided for @noScoreMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'No scoring dice! Your turn ends with 0 points.'**
-  String get noScoreMessage;
-
-  /// No description provided for @bankedMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'Points banked!'**
-  String get bankedMessage;
-
-  /// No description provided for @currentPlayer.
-  ///
-  /// In en, this message translates to:
-  /// **'Current Player'**
-  String get currentPlayer;
 
   /// No description provided for @turnScore.
   ///
@@ -346,6 +304,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Player'**
   String get player;
+
+  /// No description provided for @currentPlayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Player'**
+  String get currentPlayer;
+
+  /// No description provided for @roll.
+  ///
+  /// In en, this message translates to:
+  /// **'Roll'**
+  String get roll;
 
   /// No description provided for @bank.
   ///
