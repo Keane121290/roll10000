@@ -382,6 +382,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Back to Home'**
   String get backToHome;
+
+  /// No description provided for @noScoreMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'No scoring dice - turn lost'**
+  String get noScoreMessage;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

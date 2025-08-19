@@ -155,4 +155,7 @@ class AppLocalizationsNb extends AppLocalizations {
 
   @override
   String get backToHome => 'Til hovedmeny';
+
+  @override
+  String get noScoreMessage => 'Ingen poenggivende terninger – turen tapt';
 }
